@@ -5,7 +5,7 @@ import java.util.List;
 public class SumNum {
 
     public int sum(List<Integer> numbers) {
-        long result = 0;
+        long result = 0L;
 
         for (int n : numbers) {
             result += n;
