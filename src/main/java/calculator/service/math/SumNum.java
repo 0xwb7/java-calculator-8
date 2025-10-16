@@ -8,7 +8,11 @@ public class SumNum {
 
         int sum = 0;
         for (int n : numbers) {
-            sum = Math.addExact(sum, n);
+            try {
+                sum = Math.addExact(sum, n);
+            } catch (ArithmeticException e) {
+                throw new IllegalArgumentException("overflow");
+            }
         }
 
         return sum;
