@@ -10,7 +10,7 @@ public class Tokenizer {
     public List<String> split(String payload, String delimiterRegex) {
         return Arrays.stream(payload.split(delimiterRegex))
                 .map(String::trim)
-                .filter(Predicate.not(String::isEmpty))
+                .filter(Predicate.not(String::isBlank))
                 .toList();
     }
 }

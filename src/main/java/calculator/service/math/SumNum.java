@@ -5,16 +5,12 @@ import java.util.List;
 public class SumNum {
 
     public int sum(List<Integer> numbers) {
-        long result = 0L;
 
+        int sum = 0;
         for (int n : numbers) {
-            result += n;
+            sum = Math.addExact(sum, n);
         }
 
-        if (result > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("too big");
-        }
-
-        return (int) result;
+        return sum;
     }
 }

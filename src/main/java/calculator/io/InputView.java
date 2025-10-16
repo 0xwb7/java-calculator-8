@@ -9,8 +9,7 @@ public final class InputView {
 
     public static String readLine() {
         System.out.println(IOMessage.INPUT);
-        String input = Console.readLine();
 
-        return input == null ? "" : input;
+        return Console.readLine();
     }
 }

@@ -11,10 +11,6 @@ public class NumberParser {
         List<Integer> negative = new ArrayList<>();
 
         for (String t: tokens) {
-            if (t.isEmpty()) {
-                continue;
-            }
-
             try {
                 int n = Integer.parseInt(t);
 
