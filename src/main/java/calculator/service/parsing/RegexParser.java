@@ -4,26 +4,11 @@ import java.util.regex.Pattern;
 
 public class RegexParser {
 
-    public static final class Regex {
-        private final String delimiterRegex;
-        private final String payload;
+    private static final String DEFAULT_DELIMITER = "[,:]";
 
-        public Regex(String delimiterRegex, String payload) {
-            this.delimiterRegex = delimiterRegex;
-            this.payload = payload;
-        }
-
-        public String getDelimiterRegex() {
-            return delimiterRegex;
-        }
-
-        public String getPayload() {
-            return payload;
-        }
-    }
+    public record Regex(String delimiterRegex, String payload) {}
 
     public Regex parse(String input) {
-        final String DEFAULT_DELIMITER = "[,:]";
 
         // 커스텀 구분자일 경우
         if (input.startsWith("//")) {
@@ -47,6 +32,7 @@ public class RegexParser {
             return new Regex(delimiter, payload);
         }
 
+        // 커스텀 구분자 아닌 경우
         return new Regex(DEFAULT_DELIMITER, input);
     }
 }

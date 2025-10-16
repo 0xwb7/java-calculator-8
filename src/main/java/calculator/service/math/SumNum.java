@@ -12,7 +12,7 @@ public class SumNum {
         }
 
         if (result > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("too big");
         }
 
         return (int) result;

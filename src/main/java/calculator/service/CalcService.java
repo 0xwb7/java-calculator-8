@@ -19,13 +19,13 @@ public class CalcService {
     public int calc(String input) {
 
         Preprocessor.Normalized norm = preprocessor.validateAndNormalize(input);
-        if (norm.isEmpty()) {
+        if (norm.empty()) {
             return 0;
         }
 
-        RegexParser.Regex reg = regexParser.parse(norm.getAfterPreprocessString());
+        RegexParser.Regex reg = regexParser.parse(norm.value());
 
-        List<String> tokens = tokenizer.split(reg.getPayload(), reg.getDelimiterRegex());
+        List<String> tokens = tokenizer.split(reg.payload(), reg.delimiterRegex());
 
         List<Integer> numbers = numberParser.parse(tokens);
 

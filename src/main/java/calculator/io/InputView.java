@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 public final class InputView {
 
+    // no instantiation
     private InputView() {}
 
     public static String readLine() {
@@ -16,7 +17,7 @@ public final class InputView {
             String str = br.readLine();
             return str ==  null ? "" : str;
         } catch (IOException e) {
-            throw new IllegalStateException(e);
+            throw new IllegalStateException("IOException occurred.", e);
         }
 
     }

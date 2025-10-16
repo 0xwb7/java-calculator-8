@@ -29,11 +29,11 @@ public class NumberParser {
         }
 
         if (!nonNum.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("only numbers allowed");
         }
 
         if (!negative.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("no negative numbers");
         }
 
         return num;
