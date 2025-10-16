@@ -6,13 +6,13 @@ public class RegexParser {
 
     private static final String DEFAULT_DELIMITER = "[,:]";
 
-    public record Regex(String delimiterRegex, String payload) {}
+    public record regex(String delimiterRegex, String payload) {}
 
-    public Regex parse(String input) {
+    public regex parse(String input) {
 
         // 커스텀 구분자일 경우
         if (input.startsWith("//")) {
-            int nl = input.indexOf('\n');
+            int nl = input.indexOf("\\n");
             if (nl < 0) {
                 throw new IllegalArgumentException("no delimiter found");
             }
@@ -27,12 +27,12 @@ public class RegexParser {
                 throw new IllegalArgumentException("only one delimiter allowed");
             }
 
-            String payload = input.substring(nl + 1);
+            String payload = input.substring(nl + 2);
             String delimiter = Pattern.quote(custom);
-            return new Regex(delimiter, payload);
+            return new regex(delimiter, payload);
         }
 
         // 커스텀 구분자 아닌 경우
-        return new Regex(DEFAULT_DELIMITER, input);
+        return new regex(DEFAULT_DELIMITER, input);
     }
 }

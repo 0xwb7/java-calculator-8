@@ -14,21 +14,21 @@ public class CalcService {
     private final RegexParser regexParser = new RegexParser();
     private final Tokenizer tokenizer = new Tokenizer();
     private final NumberParser numberParser = new NumberParser();
-    private final SumNum sumnum = new SumNum();
+    private final SumNum sumNum = new SumNum();
 
     public int calc(String input) {
 
-        Preprocessor.Normalized norm = preprocessor.validateAndNormalize(input);
+        Preprocessor.check norm = preprocessor.checkString(input);
         if (norm.empty()) {
             return 0;
         }
 
-        RegexParser.Regex reg = regexParser.parse(norm.value());
+        RegexParser.regex reg = regexParser.parse(norm.value());
 
         List<String> tokens = tokenizer.split(reg.payload(), reg.delimiterRegex());
 
         List<Integer> numbers = numberParser.parse(tokens);
 
-        return sumnum.sum(numbers);
+        return sumNum.sum(numbers);
     }
 }
