@@ -1,8 +1,6 @@
 package calculator.io;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import camp.nextstep.edu.missionutils.Console;
 
 public final class InputView {
 
@@ -11,14 +9,8 @@ public final class InputView {
 
     public static String readLine() {
         System.out.println(IOMessage.INPUT);
+        String input = Console.readLine();
 
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String str = br.readLine();
-            return str ==  null ? "" : str;
-        } catch (IOException e) {
-            throw new IllegalStateException("IOException occurred.", e);
-        }
-
+        return input == null ? "" : input;
     }
 }
