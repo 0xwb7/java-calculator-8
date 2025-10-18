@@ -28,7 +28,7 @@ public class RegexParser {
             }
 
             String payload = input.substring(nl + 2);
-            String delimiter = Pattern.quote(custom);
+            String delimiter = DEFAULT_DELIMITER + "|" + Pattern.quote(custom); // 커스텀 구분자와 기본 구분자 혼합 사용 가능
             return new regex(delimiter, payload);
         }
 
