@@ -7,11 +7,22 @@ import calculator.service.parsing.Tokenizer;
 
 import java.util.List;
 
-public class CalcService {
+final class PipeLine {
 
     private final RegexParser regexParser = new RegexParser();
     private final Tokenizer tokenizer = new Tokenizer();
     private final NumberParser numberParser = new NumberParser();
+
+    List<Integer> toNumber(String input) {
+        RegexParser.Regex reg = regexParser.parse(input);
+        List<String> tokens = tokenizer.split(reg.payload(), reg.delimiterRegex());
+        return numberParser.parse(tokens);
+    }
+}
+
+public class CalcService {
+
+    private final PipeLine pipeLine = new PipeLine();
     private final SumNum sumNum = new SumNum();
 
     public int calc(String input) {
@@ -20,9 +31,7 @@ public class CalcService {
             return 0;
         }
 
-        RegexParser.regex reg = regexParser.parse(input);
-        List<String> tokens = tokenizer.split(reg.payload(), reg.delimiterRegex());
-        List<Integer> numbers = numberParser.parse(tokens);
+        List<Integer> numbers = pipeLine.toNumber(input);
 
         return sumNum.sum(numbers);
     }

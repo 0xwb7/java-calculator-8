@@ -4,9 +4,11 @@ import java.util.regex.Pattern;
 
 public class RegexParser {
 
-    public record regex(String delimiterRegex, String payload) {}
+    private static final String DEFAULT_DELIMITER = "[,:]";
 
-    public regex parse(String input) {
+    public record Regex(String delimiterRegex, String payload) {}
+
+    public Regex parse(String input) {
 
         // 커스텀 구분자일 경우
         if (input.startsWith("//")) {
@@ -30,11 +32,11 @@ public class RegexParser {
             }
 
             String payload = input.substring(nl + 2);
-            String delimiter = "[,:]" + "|" + Pattern.quote(custom); // 커스텀 구분자와 기본 구분자 혼합 사용 가능
-            return new regex(delimiter, payload);
+            String delimiter = DEFAULT_DELIMITER + "|" + Pattern.quote(custom); // 커스텀 구분자와 기본 구분자 혼합 사용 가능
+            return new Regex(delimiter, payload);
         }
 
         // 커스텀 구분자 아닌 경우
-        return new regex("[,:]", input);
+        return new Regex(DEFAULT_DELIMITER, input);
     }
 }
